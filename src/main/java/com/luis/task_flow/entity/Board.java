@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "entities")
+@Table(name = "boards")
 @Getter
 @Setter
 public class Board {
@@ -19,8 +19,13 @@ public class Board {
     @UuidGenerator
     private UUID id;
     private String name;
-    private User owner_id;
+    @ManyToOne
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    private User owner;
     @Column(name = "created_at")
     private Timestamp createdAt;
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Task> tasks;
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    private List<BoardMember> members;
 }

@@ -1,10 +1,9 @@
 package com.luis.task_flow.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Date;
 import java.util.UUID;
@@ -14,13 +13,18 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Task {
+    @Id
+    @GeneratedValue
+    @UuidGenerator
     private UUID id;
     private String title;
     private String description;
     private String status;
     private Date date;
-    @Column(name = "board_id")
-    private Board boardId;
-    @Column(name = "asignee_id")
-    private User asigneeId;
+    @ManyToOne
+    @JoinColumn(name = "board_id", referencedColumnName = "id")
+    private Board board;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User assignee;
 }

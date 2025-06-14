@@ -1,9 +1,6 @@
 package com.luis.task_flow.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
@@ -20,8 +17,12 @@ public class BoardMember {
     @GeneratedValue
     @UuidGenerator
     private UUID id;
-    private Board boardId;
-    private User userId;
+    @ManyToOne
+    @JoinColumn(name = "board_id", referencedColumnName = "id")
+    private Board board;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
     private String role;
     private Timestamp timestamp;
 }
