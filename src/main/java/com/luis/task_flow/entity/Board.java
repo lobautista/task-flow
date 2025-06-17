@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +24,7 @@ public class Board {
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private User owner;
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Task> tasks;
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)

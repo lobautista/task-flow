@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -24,5 +25,5 @@ public class BoardMember {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
     private String role;
-    private Timestamp timestamp;
+    private LocalDateTime timestamp;
 }

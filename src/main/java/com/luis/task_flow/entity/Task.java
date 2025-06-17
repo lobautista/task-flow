@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -20,7 +21,7 @@ public class Task {
     private String title;
     private String description;
     private String status;
-    private Date date;
+    private LocalDateTime date;
     @ManyToOne
     @JoinColumn(name = "board_id", referencedColumnName = "id")
     private Board board;
